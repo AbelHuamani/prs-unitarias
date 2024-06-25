@@ -1,4 +1,4 @@
-name: Docker Build and Push
+name: Docker Build and Push with SonarCloud
 
 on:
   push:
@@ -37,3 +37,10 @@ jobs:
         context: .
         push: true
         tags: docker.io/${{ secrets.DOCKER_USERNAME }}/prs:latest
+
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@v1
+      with:
+        projectKey: <your_project_key>
+        organization: <your_organization>
+        token: ${{ secrets.SONAR_TOKEN }}
