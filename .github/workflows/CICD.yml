@@ -1,4 +1,5 @@
 name: CI/CD Pipeline
+
 on:
   push:
     branches: [ main ]
@@ -30,15 +31,10 @@ jobs:
     - name: Build with Maven
       run: mvn clean install
 
-    - name: Run SonarCloud Scan
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: mvn sonar:sonar -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-
     - name: Build & push Docker image
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
-        image: ${{ secrets.DOCKER_TOKEN }}/prs
+        image: ${{ secrets.DOCKER_USERNAME }}/prs
         tags: latest
         registry: docker.io
         dockerfile: Dockerfile
