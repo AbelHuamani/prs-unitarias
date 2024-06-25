@@ -5,10 +5,10 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copiar el archivo JAR de la aplicación al contenedor
-COPY target/prs.jar prs.jar
+COPY target/com.seguridad.sisfarma-1.0.jar com.seguridad.sisfarma-1.0.jar
 
 # Exponer el puerto en el que la aplicación se ejecutará
 EXPOSE 8080
 
 # Comando para ejecutar la aplicación
-ENTRYPOINT ["java", "-jar", "prs.jar"]
+ENTRYPOINT ["java", "-jar", "com.seguridad.sisfarma-1.0.jar"]
